@@ -20,9 +20,9 @@ export function ProfilePhoto({ className = "" }: { className?: string }) {
   return (
     <Image
       src="/images/ferastack-profile.png"
-      alt={site.brand}
+      alt={`${site.contactName} — ${site.heroRole}`}
       width={320}
-      height={320}
+      height={420}
       className={`h-full w-full object-cover ${className}`}
       priority
       onError={() => setErr(true)}

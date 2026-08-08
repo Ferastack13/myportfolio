@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { expertise, highlights } from "@/lib/site";
+import { expertise, highlights, site } from "@/lib/site";
 import { PageHero } from "@/components/layout/PageHero";
 import { ProfilePhoto } from "@/components/shared/ProfilePhoto";
 import { CodeWindow } from "@/components/ui/CodeWindow";
@@ -38,8 +38,8 @@ export function AboutPageContent() {
             variants={fade}
           >
             <div className="relative">
-              <div className="h-64 w-64 overflow-hidden rounded-full border-2 border-blue-500/25 shadow-[0_0_60px_rgba(59,130,246,0.15)] sm:h-72 sm:w-72">
-                <ProfilePhoto />
+              <div className="aspect-[3/4] w-64 overflow-hidden rounded-2xl border-2 border-blue-500/25 shadow-[0_0_60px_rgba(59,130,246,0.15)] sm:w-72">
+                <ProfilePhoto className="object-top" />
               </div>
               {highlights.map((h, i) => (
                 <div
@@ -69,6 +69,17 @@ export function AboutPageContent() {
             viewport={{ once: true }}
             variants={fade}
           >
+            <div className="mb-6 flex items-center gap-4 lg:hidden">
+              <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl border border-blue-500/25">
+                <ProfilePhoto className="object-top" />
+              </div>
+              <div>
+                <p className="font-[family-name:var(--font-outfit)] text-lg font-bold text-white">
+                  {site.contactName}
+                </p>
+                <p className="text-sm text-blue-300/90">{site.heroRole}</p>
+              </div>
+            </div>
             <p className="text-base leading-relaxed text-[var(--muted)]">
               I&apos;m a senior full stack engineer building modern web applications from
               frontend to backend. Specializing in React, TypeScript, Node.js, and cloud
