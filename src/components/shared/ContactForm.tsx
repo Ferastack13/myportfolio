@@ -1,7 +1,27 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { site } from "@/lib/site";
+
+type InsertResult = { error: { message: string } | null };
+
+async function submitContact(
+  name: string,
+  email: string,
+  message: string,
+): Promise<InsertResult | null> {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!url?.trim() || !key?.trim()) {
+    return null;
+  }
+
+  const { createClient } = await import("@supabase/supabase-js");
+  const supabase = createClient(url, key);
+
+  return supabase.from("contacts").insert({ name, email, message });
+}
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -9,18 +29,34 @@ export function ContactForm() {
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
+
     const fd = new FormData(e.currentTarget);
-    const { error } = await supabase.from("contacts").insert({
-      name: fd.get("name") as string,
-      email: fd.get("email") as string,
-      message: fd.get("message") as string,
-    });
-    if (error) {
+    const name = fd.get("name") as string;
+    const email = fd.get("email") as string;
+    const message = fd.get("message") as string;
+
+    try {
+      const result = await submitContact(name, email, message);
+
+      if (!result) {
+        const subject = encodeURIComponent(`FeraStack inquiry from ${name || "website"}`);
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+        window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
+        setStatus("sent");
+        (e.target as HTMLFormElement).reset();
+        return;
+      }
+
+      if (result.error) {
+        setStatus("error");
+        return;
+      }
+
+      setStatus("sent");
+      (e.target as HTMLFormElement).reset();
+    } catch {
       setStatus("error");
-      return;
     }
-    setStatus("sent");
-    (e.target as HTMLFormElement).reset();
   }
 
   return (

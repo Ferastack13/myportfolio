@@ -1,9 +1,19 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
 import { PageHero } from "@/components/layout/PageHero";
-import { ContactForm } from "@/components/shared/ContactForm";
+
+const ContactForm = dynamic(
+  () => import("@/components/shared/ContactForm").then((m) => m.ContactForm),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="mx-auto mt-8 h-48 max-w-xl animate-pulse rounded-xl border border-white/10 bg-white/[0.03]" />
+    ),
+  },
+);
 
 const fade = {
   hidden: { opacity: 0, y: 24 },
