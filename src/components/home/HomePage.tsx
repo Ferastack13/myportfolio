@@ -10,9 +10,10 @@ import {
   SiTailwindcss,
   SiVercel,
 } from "react-icons/si";
-import { site, highlights } from "@/lib/site";
+import { site } from "@/lib/site";
 import { TechBackground } from "@/components/effects/TechBackground";
 import { Marquee } from "@/components/shared/Marquee";
+import { ProfileShowcase } from "@/components/shared/ProfileShowcase";
 
 const fade = {
   hidden: { opacity: 0, y: 28 },
@@ -127,6 +128,8 @@ export function HomePage() {
 
       <section className="border-b border-white/[0.06] py-12">
         <div className="mx-auto max-w-5xl px-5 sm:px-8">
+          <ProfileShowcase className="mb-12" />
+
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
             {techIcons.map(({ Icon, label }) => (
               <div
@@ -135,18 +138,6 @@ export function HomePage() {
                 title={label}
               >
                 <Icon className="h-8 w-8" aria-hidden />
-              </div>
-            ))}
-          </div>
-          <div className="mt-12 flex flex-wrap justify-center gap-12 sm:gap-20">
-            {highlights.map((h) => (
-              <div key={h.label} className="text-center">
-                <p className="font-[family-name:var(--font-outfit)] text-3xl font-bold text-white sm:text-4xl">
-                  {h.value}
-                </p>
-                <p className="mt-1 text-xs font-medium uppercase tracking-wider text-[var(--muted-2)]">
-                  {h.label}
-                </p>
               </div>
             ))}
           </div>

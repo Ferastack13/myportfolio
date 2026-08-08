@@ -4,8 +4,14 @@ import Image from "next/image";
 import { useState } from "react";
 import { site } from "@/lib/site";
 
-export function ProfilePhoto({ className = "" }: { className?: string }) {
+type ProfilePhotoProps = {
+  className?: string;
+  priority?: boolean;
+};
+
+export function ProfilePhoto({ className = "", priority = false }: ProfilePhotoProps) {
   const [err, setErr] = useState(false);
+
   if (err) {
     return (
       <div
@@ -17,14 +23,16 @@ export function ProfilePhoto({ className = "" }: { className?: string }) {
       </div>
     );
   }
+
   return (
     <Image
       src="/images/ferastack-profile.png"
       alt={`${site.contactName} — ${site.heroRole}`}
-      width={320}
-      height={420}
-      className={`h-full w-full object-cover ${className}`}
-      priority
+      fill
+      sizes="(max-width: 640px) 288px, 320px"
+      className={`object-cover object-top ${className}`}
+      priority={priority}
+      unoptimized
       onError={() => setErr(true)}
     />
   );

@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { expertise, highlights, site } from "@/lib/site";
+import { expertise, site } from "@/lib/site";
 import { PageHero } from "@/components/layout/PageHero";
-import { ProfilePhoto } from "@/components/shared/ProfilePhoto";
+import { ProfileShowcase } from "@/components/shared/ProfileShowcase";
 import { CodeWindow } from "@/components/ui/CodeWindow";
 import { TerminalBlock } from "@/components/ui/TerminalBlock";
 
@@ -30,38 +30,7 @@ export function AboutPageContent() {
 
       <section className="section-pad border-b border-white/[0.06]">
         <div className="mx-auto grid max-w-6xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-2">
-          <motion.div
-            className="relative mx-auto w-fit"
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            variants={fade}
-          >
-            <div className="relative">
-              <div className="aspect-[3/4] w-64 overflow-hidden rounded-2xl border-2 border-blue-500/25 shadow-[0_0_60px_rgba(59,130,246,0.15)] sm:w-72">
-                <ProfilePhoto className="object-top" />
-              </div>
-              {highlights.map((h, i) => (
-                <div
-                  key={h.label}
-                  className={`absolute glass-panel rounded-xl px-4 py-2.5 ${
-                    i === 0
-                      ? "-left-4 bottom-6"
-                      : i === 1
-                        ? "-right-4 bottom-14"
-                        : "-right-2 top-2"
-                  }`}
-                >
-                  <p className="font-[family-name:var(--font-outfit)] text-lg font-bold text-white">
-                    {h.value}
-                  </p>
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--muted-2)]">
-                    {h.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+          <ProfileShowcase priority />
 
           <motion.div
             initial="hidden"
@@ -70,15 +39,10 @@ export function AboutPageContent() {
             variants={fade}
           >
             <div className="mb-6 flex items-center gap-4 lg:hidden">
-              <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl border border-blue-500/25">
-                <ProfilePhoto className="object-top" />
-              </div>
-              <div>
-                <p className="font-[family-name:var(--font-outfit)] text-lg font-bold text-white">
-                  {site.contactName}
-                </p>
-                <p className="text-sm text-blue-300/90">{site.heroRole}</p>
-              </div>
+              <p className="font-[family-name:var(--font-outfit)] text-lg font-bold text-white">
+                {site.contactName}
+              </p>
+              <span className="text-sm text-blue-300/90">· {site.heroRole}</span>
             </div>
             <p className="text-base leading-relaxed text-[var(--muted)]">
               I&apos;m a senior full stack engineer building modern web applications from
