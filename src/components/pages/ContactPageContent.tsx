@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import { site } from "@/lib/site";
 import { PageHero } from "@/components/layout/PageHero";
 import { SocialLinks } from "@/components/shared/SocialLinks";
 
@@ -46,12 +47,13 @@ export function ContactPageContent() {
 
             <div className="mt-10 border-t border-white/10 pt-8">
               <p className="text-center text-xs font-semibold uppercase tracking-wider text-[var(--muted-2)]">
-                Or reach me directly
+                Or reach {site.contactName} directly
               </p>
-              <SocialLinks
-                className="mt-5"
-                linkClassName="hover:border-blue-500/30 hover:bg-blue-500/[0.06] hover:text-blue-300"
-              />
+              <p className="mx-auto mt-2 max-w-md text-center text-sm text-[var(--muted)]">
+                Click to open or use Copy to save any handle — email{" "}
+                <span className="text-white">{site.email}</span>
+              </p>
+              <SocialLinks className="mt-5" variant="cards" />
             </div>
 
             <div className="mt-8 flex flex-wrap justify-center gap-6 text-xs text-[var(--muted)]">

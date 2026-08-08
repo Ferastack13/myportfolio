@@ -40,17 +40,20 @@ export function SiteFooter() {
           <p className="text-xs font-semibold uppercase tracking-wider text-[var(--muted-2)]">
             Connect
           </p>
-          <ul className="mt-4 space-y-2">
+          <ul className="mt-4 space-y-3">
             {contactLinks.map((item) => (
               <li key={item.id}>
+                <p className="text-[11px] font-semibold uppercase tracking-wider text-[var(--muted-2)]">
+                  {item.label}
+                </p>
                 <a
-                  href={item.href}
-                  className="text-sm text-[var(--muted)] transition hover:text-[var(--blue-light)]"
+                  href={item.id === "email" ? item.href : item.href}
+                  className="mt-0.5 block truncate text-sm font-medium text-[var(--muted)] transition hover:text-[var(--blue-light)]"
                   {...(item.external
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
                 >
-                  {item.label}
+                  {item.display}
                 </a>
               </li>
             ))}

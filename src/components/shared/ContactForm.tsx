@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { site } from "@/lib/site";
+import { openMailto } from "@/lib/mailto";
 
 type InsertResult = { error: { message: string } | null };
 
@@ -41,7 +42,7 @@ export function ContactForm() {
       if (!result) {
         const subject = encodeURIComponent(`FeraStack inquiry from ${name || "website"}`);
         const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-        window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
+        openMailto(`mailto:${site.email}?subject=${subject}&body=${body}`);
         setStatus("sent");
         (e.target as HTMLFormElement).reset();
         return;
