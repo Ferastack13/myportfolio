@@ -24,16 +24,52 @@ export const site = {
   heroRole,
   heroSubtitle,
   heroDescription,
-  email: "hello@ferastack.dev",
-  whatsapp: "https://wa.me/15551234567",
+  email: "develizabeth178@gmail.com",
   location: "Available Worldwide · Remote-first",
   url: "https://ferastack.dev",
   social: {
-    github: "https://github.com/ferastack",
-    linkedin: "https://www.linkedin.com/in/ferastack",
-    twitter: "https://twitter.com/ferastack",
+    github: "https://github.com/ferastack13",
+    twitter: "https://twitter.com/ferastack13",
+    discord: "https://discord.com/channels/@me/1517837899544924282",
+  },
+  socialHandles: {
+    github: "ferastack13",
+    twitter: "ferastack13",
+    discord: "devliz0",
   },
 } as const;
+
+/** Interactive contact & social links used across the site */
+export const contactLinks = [
+  {
+    id: "email",
+    label: "Email",
+    href: `mailto:${site.email}`,
+    display: site.email,
+    external: false,
+  },
+  {
+    id: "github",
+    label: "GitHub",
+    href: site.social.github,
+    display: `@${site.socialHandles.github}`,
+    external: true,
+  },
+  {
+    id: "twitter",
+    label: "Twitter / X",
+    href: site.social.twitter,
+    display: `@${site.socialHandles.twitter}`,
+    external: true,
+  },
+  {
+    id: "discord",
+    label: "Discord",
+    href: site.social.discord,
+    display: site.socialHandles.discord,
+    external: true,
+  },
+] as const;
 
 export const navLinks = [
   { href: "/", label: "Home" },
@@ -147,7 +183,7 @@ export const projects = [
     ],
     tags: ["Next.js", "OpenAI", "PostgreSQL", "Stripe"],
     variant: "crm" as const,
-    github: "https://github.com/ferastack",
+    github: "https://github.com/ferastack13",
     live: "#",
   },
   {
@@ -166,7 +202,7 @@ export const projects = [
     ],
     tags: ["React", "Node.js", "AWS", "GraphQL"],
     variant: "analytics" as const,
-    github: "https://github.com/ferastack",
+    github: "https://github.com/ferastack13",
     live: "#",
   },
   {
@@ -185,7 +221,7 @@ export const projects = [
     ],
     tags: ["Node.js", "Redis", "PostgreSQL", "Docker"],
     variant: "workflow" as const,
-    github: "https://github.com/ferastack",
+    github: "https://github.com/ferastack13",
     live: "#",
   },
   {
@@ -204,7 +240,7 @@ export const projects = [
     ],
     tags: ["Next.js", "Supabase", "TypeScript", "Tailwind"],
     variant: "crm" as const,
-    github: "https://github.com/ferastack",
+    github: "https://github.com/ferastack13",
     live: "#",
   },
   {
@@ -223,7 +259,7 @@ export const projects = [
     ],
     tags: ["React", "Node.js", "MongoDB", "Stripe"],
     variant: "fintech" as const,
-    github: "https://github.com/ferastack",
+    github: "https://github.com/ferastack13",
     live: "#",
   },
   {
@@ -242,7 +278,7 @@ export const projects = [
     ],
     tags: ["Next.js", "OpenAI", "Supabase", "TypeScript"],
     variant: "analytics" as const,
-    github: "https://github.com/ferastack",
+    github: "https://github.com/ferastack13",
     live: "#",
   },
   {
@@ -261,7 +297,7 @@ export const projects = [
     ],
     tags: ["React", "GraphQL", "AWS", "Docker"],
     variant: "fintech" as const,
-    github: "https://github.com/ferastack",
+    github: "https://github.com/ferastack13",
     live: "#",
   },
 ] as const;

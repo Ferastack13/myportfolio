@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { FormEvent, useState } from "react";
-import { site } from "@/lib/site";
+import { contactLinks, site } from "@/lib/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function Contact() {
@@ -109,48 +109,20 @@ export function Contact() {
                 Direct lines
               </p>
               <ul className="mt-5 space-y-4 text-sm">
-                <li>
-                  <span className="text-[var(--muted-2)]">Email</span>
-                  <a
-                    href={`mailto:${site.email}`}
-                    className="mt-1 block font-medium text-white underline-offset-4 hover:text-cyan-200 hover:underline"
-                  >
-                    {site.email}
-                  </a>
-                </li>
-                <li>
-                  <span className="text-[var(--muted-2)]">GitHub</span>
-                  <a
-                    href={site.social.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-1 block font-medium text-white underline-offset-4 hover:text-cyan-200 hover:underline"
-                  >
-                    {site.social.github.replace("https://", "")}
-                  </a>
-                </li>
-                <li>
-                  <span className="text-[var(--muted-2)]">LinkedIn</span>
-                  <a
-                    href={site.social.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-1 block font-medium text-white underline-offset-4 hover:text-cyan-200 hover:underline"
-                  >
-                    Company profile
-                  </a>
-                </li>
-                <li>
-                  <span className="text-[var(--muted-2)]">WhatsApp</span>
-                  <a
-                    href={site.whatsapp}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-1 block font-medium text-white underline-offset-4 hover:text-cyan-200 hover:underline"
-                  >
-                    Message on WhatsApp
-                  </a>
-                </li>
+                {contactLinks.map((item) => (
+                  <li key={item.id}>
+                    <span className="text-[var(--muted-2)]">{item.label}</span>
+                    <a
+                      href={item.href}
+                      className="mt-1 block font-medium text-white underline-offset-4 hover:text-cyan-200 hover:underline"
+                      {...(item.external
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                    >
+                      {item.display}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="rounded-2xl border border-dashed border-cyan-400/25 bg-cyan-500/[0.04] p-6 text-sm leading-relaxed text-[var(--muted)]">

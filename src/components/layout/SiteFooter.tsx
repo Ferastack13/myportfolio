@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { mainNav } from "@/lib/routes";
-import { site } from "@/lib/site";
+import { contactLinks, site } from "@/lib/site";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -41,44 +41,19 @@ export function SiteFooter() {
             Connect
           </p>
           <ul className="mt-4 space-y-2">
-            <li>
-              <a
-                href={site.social.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-[var(--muted)] transition hover:text-[var(--blue-light)]"
-              >
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a
-                href={site.social.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-[var(--muted)] transition hover:text-[var(--blue-light)]"
-              >
-                LinkedIn
-              </a>
-            </li>
-            <li>
-              <a
-                href={site.social.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-[var(--muted)] transition hover:text-[var(--blue-light)]"
-              >
-                Twitter / X
-              </a>
-            </li>
-            <li>
-              <a
-                href={`mailto:${site.email}`}
-                className="text-sm text-[var(--muted)] transition hover:text-[var(--blue-light)]"
-              >
-                Email
-              </a>
-            </li>
+            {contactLinks.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={item.href}
+                  className="text-sm text-[var(--muted)] transition hover:text-[var(--blue-light)]"
+                  {...(item.external
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

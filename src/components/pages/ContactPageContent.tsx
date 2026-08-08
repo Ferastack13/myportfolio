@@ -2,8 +2,8 @@
 
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { site } from "@/lib/site";
 import { PageHero } from "@/components/layout/PageHero";
+import { SocialLinks } from "@/components/shared/SocialLinks";
 
 const ContactForm = dynamic(
   () => import("@/components/shared/ContactForm").then((m) => m.ContactForm),
@@ -43,6 +43,17 @@ export function ContactPageContent() {
             variants={fade}
           >
             <ContactForm />
+
+            <div className="mt-10 border-t border-white/10 pt-8">
+              <p className="text-center text-xs font-semibold uppercase tracking-wider text-[var(--muted-2)]">
+                Or reach me directly
+              </p>
+              <SocialLinks
+                className="mt-5"
+                linkClassName="hover:border-blue-500/30 hover:bg-blue-500/[0.06] hover:text-blue-300"
+              />
+            </div>
+
             <div className="mt-8 flex flex-wrap justify-center gap-6 text-xs text-[var(--muted)]">
               <span className="flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
@@ -56,35 +67,6 @@ export function ContactPageContent() {
                 <span className="h-1.5 w-1.5 rounded-full bg-violet-400" />
                 Global Collaboration
               </span>
-            </div>
-            <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm">
-              <a
-                href={site.social.github}
-                className="text-[var(--muted)] hover:text-blue-400"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </a>
-              <a
-                href={site.social.linkedin}
-                className="text-[var(--muted)] hover:text-blue-400"
-                target="_blank"
-                rel="noreferrer"
-              >
-                LinkedIn
-              </a>
-              <a href={`mailto:${site.email}`} className="text-[var(--muted)] hover:text-blue-400">
-                Email
-              </a>
-              <a
-                href={site.whatsapp}
-                className="text-[var(--muted)] hover:text-blue-400"
-                target="_blank"
-                rel="noreferrer"
-              >
-                WhatsApp
-              </a>
             </div>
           </motion.div>
         </div>
