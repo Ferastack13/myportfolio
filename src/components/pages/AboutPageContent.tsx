@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { expertise, site } from "@/lib/site";
 import { PageHero } from "@/components/layout/PageHero";
+import { ProfilePhoto } from "@/components/shared/ProfilePhoto";
 import { ProfileShowcase } from "@/components/shared/ProfileShowcase";
 import { CodeWindow } from "@/components/ui/CodeWindow";
 import { TerminalBlock } from "@/components/ui/TerminalBlock";
@@ -38,11 +39,16 @@ export function AboutPageContent() {
             viewport={{ once: true }}
             variants={fade}
           >
-            <div className="mb-6 flex items-center gap-4 lg:hidden">
-              <p className="font-[family-name:var(--font-outfit)] text-lg font-bold text-white">
-                {site.contactName}
-              </p>
-              <span className="text-sm text-blue-300/90">· {site.heroRole}</span>
+            <div className="mb-6 flex items-center gap-4">
+              <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-blue-400/40 shadow-[0_0_20px_rgba(59,130,246,0.25)]">
+                <ProfilePhoto priority />
+              </div>
+              <div>
+                <p className="font-[family-name:var(--font-outfit)] text-lg font-bold text-white">
+                  {site.contactName}
+                </p>
+                <p className="text-sm text-blue-300/90">{site.heroRole}</p>
+              </div>
             </div>
             <p className="text-base leading-relaxed text-[var(--muted)]">
               I&apos;m a senior full stack engineer building modern web applications from
